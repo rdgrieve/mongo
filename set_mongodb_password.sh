@@ -59,7 +59,7 @@ EOF
 fi
 
 if [ ! -z "$MONGODB_APPLICATION_DATABASE_3" ]; then
-    echo "=> Creating an ${$MONGODB_APPLICATION_DATABASE_3} user with a password in MongoDB"
+    echo "=> Creating an ${MONGODB_APPLICATION_DATABASE_3} user with a password in MongoDB"
     mongo admin -u $MONGODB_ADMIN_USER -p $MONGODB_ADMIN_PASS << EOF
 use $MONGODB_APPLICATION_DATABASE_3
 db.createUser({user: '$MONGODB_APPLICATION_USER', pwd: '$MONGODB_APPLICATION_PASS', roles:[{role:'dbOwner',db:'$MONGODB_APPLICATION_DATABASE_3'}]});
@@ -67,7 +67,7 @@ EOF
 fi
 
 if [ ! -z "$MONGODB_APPLICATION_DATABASE_4" ]; then
-    echo "=> Creating an ${$MONGODB_APPLICATION_DATABASE_4} user with a password in MongoDB"
+    echo "=> Creating an ${MONGODB_APPLICATION_DATABASE_4} user with a password in MongoDB"
     mongo admin -u $MONGODB_ADMIN_USER -p $MONGODB_ADMIN_PASS << EOF
 use $MONGODB_APPLICATION_DATABASE_4
 db.createUser({user: '$MONGODB_APPLICATION_USER', pwd: '$MONGODB_APPLICATION_PASS', roles:[{role:'dbOwner',db:'$MONGODB_APPLICATION_DATABASE_4'}]});

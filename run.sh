@@ -17,11 +17,11 @@ if [ "$OPLOG_SIZE" != "" ]; then
     cmd="$cmd --oplogSize $OPLOG_SIZE"
 fi
 
-if [ "BIND_IPS" != "" ]; then
+if [ "$BIND_IPS" != "" ]; then
     cmd="$cmd --bind_ip $BIND_IPS"
 fi
 
-if [ "REPLSET" != "" ]; then
+if [ "$REPLSET" != "" ]; then
     cmd="$cmd --replSet $REPLSET"
 fi
 

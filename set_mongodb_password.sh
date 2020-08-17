@@ -21,6 +21,28 @@ while [[ RET -ne 0 ]]; do
     RET=$?
 done
 
+if [ ! -z "$REPLSET" ]; then
+   echo "=> Creating replicaset ${REPLSET} in MongoDB"
+  mongo << EOF
+
+  var hostname = hostname();
+
+  var cfg = {
+      "_id": '$REPLSET',
+      "members": [
+          {
+              "_id": 0,
+              "host": hostname + ':27017',
+              "priority": 2
+          }
+      ]
+  };
+  rs.initiate(cfg, { force: true });
+EOF
+
+sleep 3
+fi
+
 # Create the admin user
 echo "=> Creating admin user with a password in MongoDB"
 mongo admin --eval "db.createUser({user: '$MONGODB_ADMIN_USER', pwd: '$MONGODB_ADMIN_PASS', roles:[{role:'root',db:'admin'}]});"
